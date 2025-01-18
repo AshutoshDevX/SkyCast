@@ -108,7 +108,7 @@ async function showPosition(position){
     lat = position.coords.latitude;
     lon = position.coords.longitude;
     try{
-        const currentLocation = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=951bc287fe88eae034d0603907e2510e`);
+        const currentLocation = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid={}`);
         const currentLocationData = await currentLocation.json();
         console.log(currentLocationData)
         const {name} = currentLocationData;
@@ -139,7 +139,7 @@ search.addEventListener('submit',(e)=>{
 //Fetching the API to get location object.
 async function fetchData(){
     try{
-        const currentWeather = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=951bc287fe88eae034d0603907e2510e`);
+        const currentWeather = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid={}`);
         const currentData = await currentWeather.json();
     
         const {main,weather,wind,sys,name,dt,id,coord,visibility} = currentData;
@@ -162,7 +162,7 @@ async function fetchData(){
 
 
         //Five Day Forecast
-        const fiveDayWeather = await fetch(`https://api.openweathermap.org/data/2.5/forecast?id=${id}&appid=951bc287fe88eae034d0603907e2510e`);
+        const fiveDayWeather = await fetch(`https://api.openweathermap.org/data/2.5/forecast?id=${id}&appid={}`);
         const fiveDayData = await fiveDayWeather.json();
 
         const{list} = fiveDayData;
@@ -189,7 +189,7 @@ async function fetchData(){
         }
 
         //Api to the current location air pollution;
-        const airQaulityIndex = await fetch(`http://api.openweathermap.org/data/2.5/air_pollution?lat=${coord.lat}&lon=${coord.lon}&appid=951bc287fe88eae034d0603907e2510e`)
+        const airQaulityIndex = await fetch(`http://api.openweathermap.org/data/2.5/air_pollution?lat=${coord.lat}&lon=${coord.lon}&appid={}`)
         const airQaulityData = await airQaulityIndex.json()
         const aqi = airQaulityData.list[0].main.aqi;
 
